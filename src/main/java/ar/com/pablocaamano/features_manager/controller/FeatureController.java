@@ -21,14 +21,24 @@ public class FeatureController {
         return this.service.getAllFeatures();
     }
 
-    @GetMapping(value = "/{feature}")
+    @GetMapping(value = "{feature}")
     public FeatureDTO getFeature(@PathVariable String feature) {
         return this.service.getFeatureByType(feature);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "{name}")
-    public FeatureDTO insertFeature(@PathVariable String name ,@RequestBody FeatureDTO dto) {
-        return this.service.addFeature(name, dto);
+    @PostMapping(value = "{feature}")
+    public FeatureDTO insertFeature(@PathVariable String feature ,@RequestBody FeatureDTO dto) {
+        return this.service.addFeature(feature, dto);
+    }
+
+    @PatchMapping(value = "{feature}")
+    public FeatureDTO updateFeature(@PathVariable String feature ,@RequestBody FeatureDTO dto) {
+        return this.service.updateFeature(feature, dto);
+    }
+
+    @DeleteMapping(value = "{feature}")
+    public void deleteFeature(@PathVariable String feature) {
+        this.service.deleteFeatureByName(feature);
     }
 }

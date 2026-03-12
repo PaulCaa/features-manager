@@ -78,6 +78,19 @@ public class FeatureServiceImpl implements FeatureService {
                         this.mapper.toEntity(name, dto)));
     }
 
+    @Override
+    public FeatureDTO updateFeature(String name, FeatureDTO dto) {
+        log.info("Updating feature '{}'", name);
+        FeatureEntity entity = this.getFeature(name);
+        if(Objects.isNull(entity)) {
+            throw new ResourceNotFoundException("Not found feature with name: ".concat(name));
+        }
+        log.debug("Mapping data to update");
+        this.mapper.updateEntity(entity, dto);
+        return this.mapper.toDTO(
+                this.saveFeature(entity));
+    }
+
     private FeatureEntity saveFeature(FeatureEntity entity) {
         log.debug("Persisiting feature entity on database");
         try {
@@ -85,6 +98,26 @@ public class FeatureServiceImpl implements FeatureService {
         } catch (Exception exception) {
             log.error(exception.getMessage(), exception);
             throw new DatabaseOperationException("Error persisting new feature entity", exception);
+        }
+    }
+
+    @Override
+    public void deleteFeatureByName(String name) {
+        log.info("Deleting feature name '{}'", name);
+        FeatureEntity entity = this.getFeature(name);
+        if(Objects.isNull(entity)) {
+            throw new ResourceNotFoundException("Not found feature with name: ".concat(name));
+        }
+        this.deleteRegister(entity);
+    }
+
+    private void deleteRegister(FeatureEntity entity) {
+        log.debug("Deleting register from database");
+        try {
+            this.repository.delete(entity);
+        } catch (Exception exception) {
+            log.error(exception.getMessage(), exception);
+            throw new DatabaseOperationException("Error deleting feature from database", exception);
         }
     }
 }

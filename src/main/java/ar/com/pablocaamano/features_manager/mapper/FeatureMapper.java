@@ -30,7 +30,7 @@ public class FeatureMapper {
                     .details(Objects.nonNull(dto.getDetails()) ? dto.getDetails() : null)
                     .enables(Objects.nonNull(dto.getEnables()) ? dto.getEnables() : Collections.EMPTY_LIST)
                     .blocks(Objects.nonNull(dto.getBlocks()) ? dto.getBlocks() : Collections.EMPTY_LIST)
-                    .enabled(dto.isEnabled()).build();
+                    .enabled(Objects.nonNull(dto.getEnabled()) ? dto.getEnabled() : Boolean.TRUE).build();
         } catch (Exception exception) {
             throw new DataMapProcessException("Error mapping feature entity");
         }
@@ -45,5 +45,20 @@ public class FeatureMapper {
                 .replace("-","_")
                 .replace(".","_")
                 .replace(",","_");
+    }
+
+    public void updateEntity(FeatureEntity entity, FeatureDTO dto) {
+        if(Objects.nonNull(dto.getDetails())) {
+            entity.setDetails(dto.getDetails());
+        }
+        if(Objects.nonNull(dto.getEnables())) {
+            entity.setEnables(dto.getEnables());
+        }
+        if(Objects.nonNull(dto.getBlocks())) {
+            entity.setBlocks(dto.getBlocks());
+        }
+        if(Objects.nonNull(dto.getEnabled())) {
+            entity.setEnabled(dto.getEnabled());
+        }
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 public class FeatureDTO {
     private String feature;
     private String details;
-    private boolean enabled;
+    private Boolean enabled;
     private List<Long> enables;
     private List<Long> blocks;
 }
