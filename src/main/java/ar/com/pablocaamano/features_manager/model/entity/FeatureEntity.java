@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@Document(collection = "feature-flag")
+@Document(collection = "features")
 public class FeatureEntity {
     @Id
     private String id;

@@ -21,6 +21,7 @@
 		<java.version>17</java.version>
 		<validation.api.version>2.0.1.Final</validation.api.version>
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<commons.lib.version>1.5.0-SNAPSHOT</commons.lib.version>
 	</properties>
 
 	<dependencies>
@@ -58,6 +59,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>ar.com.pablocaamano</groupId>
+			<artifactId>commons-library</artifactId>
+			<version>${commons.lib.version}</version>
 		</dependency>
 	</dependencies>
 

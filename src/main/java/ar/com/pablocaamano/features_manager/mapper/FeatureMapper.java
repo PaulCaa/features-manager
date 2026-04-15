@@ -3,7 +3,6 @@ package ar.com.pablocaamano.features_manager.mapper;
 import ar.com.pablocaamano.features_manager.exception.DataMapProcessException;
 import ar.com.pablocaamano.features_manager.model.dto.FeatureDTO;
 import ar.com.pablocaamano.features_manager.model.entity.FeatureEntity;
-import org.mapstruct.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;

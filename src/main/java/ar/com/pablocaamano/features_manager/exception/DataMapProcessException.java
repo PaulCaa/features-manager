@@ -1,6 +1,8 @@
 package ar.com.pablocaamano.features_manager.exception;
 
-public class DataMapProcessException extends RuntimeException {
+import ar.com.pablocaamano.commons.exception.CommonException;
+
+public class DataMapProcessException extends CommonException {
     public DataMapProcessException(String message) {
         super(message);
     }
